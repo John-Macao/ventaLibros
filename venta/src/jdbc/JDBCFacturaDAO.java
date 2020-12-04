@@ -19,7 +19,7 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 	
 	public void crear(Factura factura, int cli_id, int lib_id) {
 		
-		sql.update("INSERT VEN_Facturas VALUES (0, " + factura.getComision() + ", "
+		sql.update("INSERT VEN_Facturas VALUES (default, " + factura.getComision() + ", "
 				+ factura.getSubtotal() + ", "+ factura.getEnvio() + ", " + factura.getTotal() + ", "+  + cli_id +","+ lib_id + ")");
 	}
 
