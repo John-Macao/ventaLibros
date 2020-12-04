@@ -63,6 +63,7 @@ public class ComprarLibroController extends HttpServlet {
 				aux.setCliente(cliente);
 				aux.setLibro(listaLibros.get(i));
 				facturas.add(aux);
+				System.out.println("El tamaño la lista: "+facturas.size());
 			}
 			
 			

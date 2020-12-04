@@ -68,7 +68,7 @@ public class FacturaLibroController extends HttpServlet {
 			factura.setLibro(libro);
 			factura.setSubtotal(precio);
 			//Vemos el tipo
-			if (tipo.equals("impreso")) {
+			if (tipo.equals("Impreso")) {
 				factura.setComision(precio*0.2);
 				factura.setEnvio(20.00);
 			}else {

@@ -84,13 +84,13 @@
         <c:forEach var="fac" items="${listaFact}">
             <tr>
 						            		
-                <td>${fac.Libro.id}</td>
-                <td>${fac.Libro.titulo}</td>
-                <td>${fac.Libro.autor}</td>
-                <td>${fac.Libro.edicion}</td>
-                <td>${fac.Libro.tipo}</td>
-                <td>${fac.Libro.precio}</td>
-                <td> <a href="/venta/FacturaLibroController?idCl=${fac.Cliente.id}&idL=${fac.Libro.id}&tipoL=${fac.Libro.tipo}&precioL=${fac.Libro.precio}">Comprar</a> </td>
+                <td>${fac.libro.id}</td>
+                <td>${fac.libro.titulo}</td>
+                <td>${fac.libro.autor}</td>
+                <td>${fac.libro.edicion}</td>
+                <td>${fac.libro.tipo}</td>
+                <td>${fac.libro.precio}</td>
+                <td> <a href="/venta/FacturaLibroController?idCl=${fac.cliente.id}&idL=${fac.libro.id}&tipoL=${fac.libro.tipo}&precioL=${fac.libro.precio}">Comprar</a> </td>
 				
             </tr>
         </c:forEach>
