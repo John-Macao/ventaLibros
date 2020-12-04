@@ -25,9 +25,15 @@ public class ComprarLibroController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String url=null;
+		try {
+		 url ="/JSP/index.jsp";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	/**
