@@ -46,9 +46,9 @@ public class JDBCClienteDAO extends JDBCGenericDAO<Cliente, Integer> implements 
 		return cliente;
 	}
 
-	@Override
-	public void update(Cliente entity) {
-		// TODO Auto-generated method stub
+	
+	public void update(Cliente cliente) {
+		sql.update("UPDATE VEN_Clientes SET cli_credito = " + cliente.getCredito() );
 		
 	}
 
