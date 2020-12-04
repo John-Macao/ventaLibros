@@ -3,7 +3,7 @@ package modelo;
 public class Factura {
 
 
-	private int id;
+	 private int id;
 	 private double subtotal ;
 	 private double comision;
 	 private double envio ; 
