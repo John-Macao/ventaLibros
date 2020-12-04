@@ -69,28 +69,28 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <c:set var="lista" scope="request" value="${libros}" />
 
     <table>
         <tr>
             <td><strong>Codigo</strong></td>
-            <td><strong>Titutlo</strong></td>
+            <td><strong>Titulo</strong></td>
             <td><strong>Autor</strong></td>
             <td><strong>Edicion</strong></td>
             <td><strong>Tipo</strong></td>
             <td><strong>Precio</strong></td>
             <td><strong>Comprar</strong></td>
         </tr>
-        <c:forEach var="lib" items="${lista}">
+
+        <c:forEach var="fac" items="${listaFact}">
             <tr>
 						            		
-                <td>${lib.id}</td>
-                <td>${lib.titulo}</td>
-                <td>${lib.autor}</td>
-                <td>${lib.edicion}</td>
-                <td>${lib.tipo}</td>
-                <td>${lib.precio}</td>
-                <td> <a href="/venta/FacturaLibroController?idL=${lib.id}&tipoL=${lib.tipo}&precioL=${lib.precio}">Comprar</a> </td>
+                <td>${fac.Libro.id}</td>
+                <td>${fac.Libro.titulo}</td>
+                <td>${fac.Libro.autor}</td>
+                <td>${fac.Libro.edicion}</td>
+                <td>${fac.Libro.tipo}</td>
+                <td>${fac.Libro.precio}</td>
+                <td> <a href="/venta/FacturaLibroController?idCl=${fac.Cliente.id}&idL=${fac.Libro.id}&tipoL=${fac.Libro.tipo}&precioL=${fac.Libro.precio}">Comprar</a> </td>
 				
             </tr>
         </c:forEach>

@@ -13,7 +13,8 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 
 	@Override
 	public void create(Factura entity) {
-		
+		sql.update("INSERT VEN_Facturas VALUES (0, " + entity.getComision() + ", "
+				+ entity.getSubtotal() + ", "+ entity.getEnvio() + ", " + entity.getTotal() + ", "+  + entity.getCliente().getId() +","+ entity.getLibro().getId() + ")");
 		
 	}
 	

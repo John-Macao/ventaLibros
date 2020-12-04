@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import dao.ClienteDAO;
 import dao.DAOFactory;
 import dao.LibroDAO;
 import modelo.Cliente;
+import modelo.Factura;
 import modelo.Libro;
 
 
@@ -27,6 +29,7 @@ public class ComprarLibroController extends HttpServlet {
 	private ClienteDAO clienteDao;
 	private List<Libro>listaLibros;
 	private Cliente cliente;
+	private ArrayList<Factura> facturas;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,6 +38,7 @@ public class ComprarLibroController extends HttpServlet {
         libroDao=DAOFactory.getFactory().getLibroDAO();
         clienteDao = DAOFactory.getFactory().getClienteDAO();
         cliente = new Cliente();
+        facturas = new ArrayList<Factura>();
     }
 
 	/**
@@ -47,9 +51,22 @@ public class ComprarLibroController extends HttpServlet {
 		int idC =0;
 		
 		try {
+			//Recibimos el id de cliente
+			idC = Integer.parseInt(request.getParameter("idC"));
+			cliente = clienteDao.read(idC);
+			//Recibimos la lista de libros
 			listaLibros= libroDao.find();
 			System.out.println("El tamaño de la lista es de "+ listaLibros.size());
-			request.setAttribute("libros", listaLibros);
+			//Seteamos el cliente y los libros en Factura
+			for (int i = 0; i < listaLibros.size(); i++) {
+				Factura aux = new Factura();
+				aux.setCliente(cliente);
+				aux.setLibro(listaLibros.get(i));
+				facturas.add(aux);
+			}
+			
+			
+			request.setAttribute("listaFact", facturas);
 			url= "/JSP/comprar.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();
