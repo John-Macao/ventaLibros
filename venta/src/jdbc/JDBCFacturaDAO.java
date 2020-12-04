@@ -13,7 +13,7 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 
 	@Override
 	public void create(Factura entity) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

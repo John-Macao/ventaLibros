@@ -14,7 +14,8 @@ public class ContextJDBC {
 	//private static final String URL = "jdbc:mysql://127.0.0.1:3307/pedidos?serverTimezone=UTC";
 	private static final String USER = "root";
 	//private static final String PASS = "Patito.123@456";
-	private static final String PASS = "";
+	//private static final String PASS = "";
+	private static final String PASS = "DFTUrptu9799";
 	private static ContextJDBC jdbc = null;	
 	private Statement statement = null;
 

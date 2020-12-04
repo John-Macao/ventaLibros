@@ -26,6 +26,7 @@ public class LoginControlador extends HttpServlet {
      */
     public LoginControlador() {
         clienteDAO = DAOFactory.getFactory().getClienteDAO();
+        cliente = new Cliente();
         // TODO Auto-generated constructor stub
     }
 
@@ -57,11 +58,12 @@ public class LoginControlador extends HttpServlet {
 				session = request.getSession(true);
 				session.setAttribute("id", cliente.getId());
 				session.setAttribute("nombre", cliente.getNombre());
-				
-				url = "/venta/index.html";
-				httpResponse.sendRedirect(url);
-				
-			} else {
+				request.setAttribute("cliente", cliente);
+				url = "/JSP/index.jsp";
+				//httpResponse.sendRedirect(url);
+			}
+			
+			else {
 				url = "/venta/IniciarSesion.html";
 				httpResponse.sendRedirect(url);
 			}
@@ -72,6 +74,7 @@ public class LoginControlador extends HttpServlet {
 			url = "/venta/IniciarSesion.html";
 			httpResponse.sendRedirect(url);
 		}
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 		
 	}
 

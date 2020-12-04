@@ -1,40 +1,31 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ClienteDAO;
 import dao.DAOFactory;
-import dao.LibroDAO;
-import modelo.Cliente;
-import modelo.Libro;
-
-
+import dao.FacturaDAO;
+import modelo.Factura;
 
 /**
- * Servlet implementation class ComprarLibroController
+ * Servlet implementation class FacturaLibroController
  */
-@WebServlet("/ComprarLibroController")
-public class ComprarLibroController extends HttpServlet {
+@WebServlet("/FacturaLibroController")
+public class FacturaLibroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LibroDAO libroDao;
-	private ClienteDAO clienteDao;
-	private List<Libro>listaLibros;
-	private Cliente cliente;
+	private FacturaDAO facturaDao;
+	private Factura factura ;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ComprarLibroController() {
-        libroDao=DAOFactory.getFactory().getLibroDAO();
-        clienteDao = DAOFactory.getFactory().getClienteDAO();
-        cliente = new Cliente();
+    public FacturaLibroController() {
+        facturaDao= DAOFactory.getFactory().getFacturaDAO();
+        factura = new Factura();
     }
 
 	/**
@@ -42,20 +33,22 @@ public class ComprarLibroController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String url=null;
-		int idC =0;
+		String url = null;
+		String tipo = null;
+		int id= 0;
+		double precio= 0;
 		
 		try {
-			listaLibros= libroDao.find();
-			System.out.println("El tamaño de la lista es de "+ listaLibros.size());
-			request.setAttribute("libros", listaLibros);
-			url= "/JSP/comprar.jsp";
+			id = Integer.valueOf(request.getParameter("idL"));
+			tipo = request.getParameter("tipoL");
+			precio= Double.parseDouble(request.getParameter("precioL"));
+			if (tipo.equals("impreso")) {
+				
+			}
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			// TODO: handle exception
 		}
-		getServletContext().getRequestDispatcher(url).forward(request, response);
-		
 	}
 
 	/**
