@@ -60,6 +60,7 @@ public class LoginControlador extends HttpServlet {
 				session.setAttribute("nombre", cliente.getNombre());
 				request.setAttribute("cliente", cliente);
 				url = "/JSP/index.jsp";
+				getServletContext().getRequestDispatcher(url).forward(request, response);
 				//httpResponse.sendRedirect(url);
 			}
 			
@@ -74,7 +75,7 @@ public class LoginControlador extends HttpServlet {
 			url = "/venta/IniciarSesion.html";
 			httpResponse.sendRedirect(url);
 		}
-		getServletContext().getRequestDispatcher(url).forward(request, response);
+		
 		
 	}
 
