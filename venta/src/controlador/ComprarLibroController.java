@@ -68,6 +68,7 @@ public class ComprarLibroController extends HttpServlet {
 			
 			
 			request.setAttribute("listaFact", facturas);
+			//request.setAttribute("cliente", cliente);
 			url= "/JSP/comprar.jsp";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -58,4 +58,5 @@ public class JDBCLibroDAO extends JDBCGenericDAO<Libro, Integer> implements Libr
 		return list;
 	}
 
+
 }

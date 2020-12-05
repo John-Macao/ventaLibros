@@ -58,14 +58,15 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 		return null;
 	}
 	
-	public List<Factura> listarFactura(int id_fac , Cliente cliente) {
+	public List<Factura> listarFactura(int idC ) {
 		List<Factura> list = new ArrayList<Factura>();
-		ResultSet rs = sql.query("SELECT * FROM VEN_Facturas WHERE fac_id=" + id_fac + "AND cli_id=" + cliente.getId() );
+		Cliente cli = new Cliente ();
+		ResultSet rs = sql.query("SELECT * FROM VEN_Facturas WHERE cli_id=" + idC );
 		
 		try {
 			while (rs.next()) {
-				list.add(new Factura(rs.getInt("fac_id"), rs.getDouble(" fac_subtotal "), rs.getDouble("fac_comision"),
-						rs.getDouble("fac_envio"), rs.getDouble("fac_total"),  null, null));
+				list.add(new Factura(rs.getInt("fac_id"), rs.getDouble("fac_subtotal"), rs.getDouble("fac_comision"),
+						rs.getDouble("fac_envio"), rs.getDouble("fac_total"), null, null));
 			}
 
 		} catch (SQLException e) {
@@ -73,5 +74,6 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 		}
 		return list;
 	}
+
 
 }

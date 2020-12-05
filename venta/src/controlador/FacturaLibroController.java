@@ -50,13 +50,15 @@ public class FacturaLibroController extends HttpServlet {
 		int idCl = 0;
 		int id= 0;
 		double precio= 0;
+		double credito=0;
 		
 		try {
 			idCl = Integer.valueOf(request.getParameter("idCl"));	//Id cliente
 			id = Integer.valueOf(request.getParameter("idL"));	//Id Libro
 			tipo = request.getParameter("tipoL");	//Tipo Libro
 			precio= Double.parseDouble(request.getParameter("precioL"));	//Precio Libro
-			
+			credito= Double.parseDouble(request.getParameter("creditoC"));
+			System.out.println("El credito recibido es de : " +credito);
 			//Agregamos cliente
 			cliente = clienteDao.read(idCl);
 			
@@ -79,7 +81,9 @@ public class FacturaLibroController extends HttpServlet {
 			
 			//Creamos la factira
 			facturaDao.create(factura);
-			
+			cliente.setCredito(cliente.getCredito()-precio);
+			clienteDao.update(cliente);
+			factura.setCliente(clienteDao.read(idCl));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(">>>ERROR EN EL FACTURA");

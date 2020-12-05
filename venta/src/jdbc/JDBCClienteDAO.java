@@ -48,7 +48,12 @@ public class JDBCClienteDAO extends JDBCGenericDAO<Cliente, Integer> implements 
 
 	
 	public void update(Cliente cliente) {
-		sql.update("UPDATE VEN_Clientes SET cli_credito = " + cliente.getCredito() );
+		System.out.println("El credito de la persona es : " + cliente.getCredito());
+		try {
+			sql.update("UPDATE VEN_Clientes SET cli_credito = " + cliente.getCredito() +" WHERE cli_id= "+cliente.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 

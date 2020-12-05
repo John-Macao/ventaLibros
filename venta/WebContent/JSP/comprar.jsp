@@ -62,7 +62,9 @@
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Libros</h2>
+      <c:set var = "credito" scope = "request"  value = "${listaFact}"/>
+      
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Credito Disponible <c:out value = "${credito.get(0).cliente.credito}"/></h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
@@ -81,7 +83,7 @@
             <td><strong>Comprar</strong></td>
         </tr>
 
-        <c:forEach var="fac" items="${listaFact}">
+        <c:forEach var="fac"  items="${listaFact}">
             <tr>
 						            		
                 <td>${fac.libro.id}</td>
@@ -90,7 +92,7 @@
                 <td>${fac.libro.edicion}</td>
                 <td>${fac.libro.tipo}</td>
                 <td>${fac.libro.precio}</td>
-                <td> <a href="/venta/FacturaLibroController?idCl=${fac.cliente.id}&idL=${fac.libro.id}&tipoL=${fac.libro.tipo}&precioL=${fac.libro.precio}">Comprar</a> </td>
+                <td> <a href="/venta/FacturaLibroController?idCl=${fac.cliente.id}&idL=${fac.libro.id}&tipoL=${fac.libro.tipo}&precioL=${fac.libro.precio}&creditoC=${fac.cliente.credito}">Comprar</a> </td>
 				
             </tr>
         </c:forEach>
