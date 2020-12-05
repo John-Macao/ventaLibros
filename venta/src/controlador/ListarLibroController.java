@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOFactory;
 import dao.FacturaDAO;
+import dao.LibroDAO;
 import modelo.Factura;
 import modelo.Libro;
 
@@ -21,13 +23,16 @@ import modelo.Libro;
 public class ListarLibroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FacturaDAO facturaDao;
+	private LibroDAO libroDao;
 	private List<Factura>listaFacturas;
+	private ArrayList<String> titulos;
 	private Libro libro;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ListarLibroController() {
         facturaDao= DAOFactory.getFactory().getFacturaDAO();
+        libroDao=DAOFactory.getFactory().getLibroDAO();
     }
 
 	/**
@@ -43,11 +48,17 @@ public class ListarLibroController extends HttpServlet {
 		
 		listaFacturas = facturaDao.listarFactura(idC);
 		System.out.println("Tamaño de la Lista: " + listaFacturas.size());
+		
+		/*for (Factura f : listaFacturas) {
+			titulos.add(libroDao.read(f.getLib_id()).getTitulo());
+		}*/
+		
 		request.setAttribute("facturas", listaFacturas);
+		//request.setAttribute("titulos", titulos);
 		url = "/JSP/factura.jsp";
 	} catch (Exception e) {
 		e.printStackTrace();
-		url = "/JSP/error.jsp";
+		//url = "/JSP/error.jsp";
 	}
 	getServletContext().getRequestDispatcher(url).forward(request, response);
 

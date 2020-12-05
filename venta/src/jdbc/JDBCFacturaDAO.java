@@ -5,12 +5,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.DAOFactory;
 import dao.FacturaDAO;
+import dao.LibroDAO;
 import modelo.Cliente;
 import modelo.Factura;
+import modelo.Libro;
 
 public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements FacturaDAO {
 
+	private LibroDAO libroDAO;
+	
 	@Override
 	public void create(Factura entity) {
 		sql.update("INSERT VEN_Facturas VALUES (0, " + entity.getComision() + ", "
@@ -61,10 +66,13 @@ public class JDBCFacturaDAO extends JDBCGenericDAO<Factura, Integer> implements 
 	public List<Factura> listarFactura(int idC ) {
 		List<Factura> list = new ArrayList<Factura>();
 		Cliente cli = new Cliente ();
+		Libro lib;
 		ResultSet rs = sql.query("SELECT * FROM VEN_Facturas WHERE cli_id=" + idC );
+		libroDAO = DAOFactory.getFactory().getLibroDAO();
 		
 		try {
 			while (rs.next()) {
+				
 				list.add(new Factura(rs.getInt("fac_id"), rs.getDouble("fac_subtotal"), rs.getDouble("fac_comision"),
 						rs.getDouble("fac_envio"), rs.getDouble("fac_total"), null, null));
 			}
